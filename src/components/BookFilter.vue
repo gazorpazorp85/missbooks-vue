@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     onFilter() {
-      if (this.filterBy.priceTo === '')  this.filterBy.priceTo = Infinity;
+      if (!this.filterBy.priceTo)  this.filterBy.priceTo = Infinity;
       this.$emit("filterBooks", this.filterBy);
     }
   }

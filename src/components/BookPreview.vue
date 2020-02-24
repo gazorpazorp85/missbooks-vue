@@ -5,8 +5,8 @@
       <div class="capitalize">{{book.title}}</div>
       <div class="price-container">
         <div>
-          <span class="price" :class="classObject">{{book.listPrice.amount}}</span>
-          <span>{{this.formatCurrency(book.listPrice.currencyCode)}}</span>
+          <span class="price" :class="bookPriceClass">{{book.listPrice.amount}}</span>
+          <span>{{formatedCurrency}}</span>
         </div>
         <img
           v-if="book.listPrice.isOnSale"
@@ -28,14 +28,15 @@ export default {
     }
   },
   computed: {
-    classObject() {
-      return (this.book.listPrice.amount < 20) ? 'cheap' : 
-             (this.book.listPrice.amount > 150) ? 'expensive' : '';
-    }
-  },
-  methods: {
-    formatCurrency(currency) {
-      return BookService.formatCurrency(currency);
+    bookPriceClass() {
+      return this.book.listPrice.amount < 20
+        ? "cheap"
+        : this.book.listPrice.amount > 150
+        ? "expensive"
+        : "";
+    },
+    formatedCurrency() {
+      return BookService.formatCurrency(this.book.listPrice.currencyCode);
     }
   }
 };

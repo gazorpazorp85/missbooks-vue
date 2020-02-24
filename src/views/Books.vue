@@ -20,8 +20,9 @@ export default {
   },
   computed: {
     booksToShow() {
+      const lowerCaseFilterTxt = this.filterBy.txt.toLowerCase();
       return this.books.filter(book =>
-        book.title.toLowerCase().includes(this.filterBy.txt)
+        book.title.toLowerCase().includes(lowerCaseFilterTxt)
         && (book.listPrice.amount >= this.filterBy.priceFrom) 
         && (book.listPrice.amount <= this.filterBy.priceTo))
     }
